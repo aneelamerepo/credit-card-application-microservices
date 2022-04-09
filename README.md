@@ -15,7 +15,7 @@ Java 8, Spring Boot (DI, MVC, JPA), H2 in-memory Database, Junit, Maven
 
 To get the Back-end App running locally:
 1. Clone this repo
-2. You can import the project on Intellij IDE/Eclipse
+2. Import the project on Intellij IDE/Eclipse
 3. Right Click on the directory and Run as Maven install
 4. Run as Java Application
 
