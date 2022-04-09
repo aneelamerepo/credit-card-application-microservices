@@ -1,4 +1,4 @@
-package creditcard.exception;
+package com.creditcard.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * This is an exception handler.
  */
 @ControllerAdvice
-class CardNotFoundAdvice {
+class CreditCardNotFoundAdvice {
 
 	@ResponseBody
-	@ExceptionHandler(CardNotFoundException.class)
+	@ExceptionHandler(CreditCardNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	String cardNotFoundHandler(CardNotFoundException ex) {
+	String cardNotFoundHandler(CreditCardNotFoundException ex) {
 		return ex.getMessage();
 	}
 }

@@ -1,7 +1,6 @@
-package creditcard.util;
+package com.creditcard.util;
 
-import creditcard.dao.jpa.CardRepository;
-import creditcard.domain.Card;
+import com.creditcard.dao.jpa.CreditCardRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +19,7 @@ class LoadDatabase {
 	private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
 	@Bean
-	CommandLineRunner initDatabase(CardRepository repository) {
+	CommandLineRunner initDatabase(CreditCardRepository repository) {
 
 		return args -> {
 			//log.info("Preloading " + repository.save(new Card("Alice", "1111 2222 3333 4444","3000","0")));

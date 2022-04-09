@@ -1,4 +1,4 @@
-package creditcard.controller;
+package com.creditcard.controller;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import creditcard.dao.jpa.CardRepository;
-import creditcard.domain.Card;
-import creditcard.exception.CardNotFoundException;
+import com.creditcard.dao.jpa.CreditCardRepository;
+import com.creditcard.domain.CreditCard;
+import com.creditcard.exception.CreditCardNotFoundException;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -26,33 +26,33 @@ import org.springframework.http.MediaType;
  */
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-public class CardController {
+public class CreditCardController {
 
-	private final CardRepository repository;
+	private final CreditCardRepository repository;
 
 	private static final ObjectMapper objectMapper = new ObjectMapper();
 
-	CardController(CardRepository repository) {
+	CreditCardController(CreditCardRepository repository) {
 		this.repository = repository;
 	}
 
 
 	@GetMapping("")
-	CollectionModel<EntityModel<Card>> all() {
+	CollectionModel<EntityModel<CreditCard>> all() {
 
-		List<EntityModel<Card>> cards = repository.findAll().stream()
+		List<EntityModel<CreditCard>> cards = repository.findAll().stream()
 				.map(card -> EntityModel.of(card,
-						linkTo(methodOn(CardController.class).one(card.getId())).withSelfRel(),
-						linkTo(methodOn(CardController.class).all()).withRel("cards")))
+						linkTo(methodOn(CreditCardController.class).one(card.getId())).withSelfRel(),
+						linkTo(methodOn(CreditCardController.class).all()).withRel("cards")))
 				.collect(Collectors.toList());
 
-		return CollectionModel.of(cards, linkTo(methodOn(CardController.class).all()).withSelfRel());
+		return CollectionModel.of(cards, linkTo(methodOn(CreditCardController.class).all()).withSelfRel());
 	}
 
 
 	@PostMapping(value="/creditCard/add",consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> createCreditCard(@RequestBody Card card) {
+	public ResponseEntity<?> createCreditCard(@RequestBody CreditCard card) {
 			try {
 				repository.save(card);
 				return new ResponseEntity<Object>(HttpStatus.OK);
@@ -62,19 +62,19 @@ public class CardController {
 	}
 
 	@GetMapping(value="/creditCard/getAll")
-	public List<Card> getAllCreditCards() {
+	public List<CreditCard> getAllCreditCards() {
 
 		return repository.findAll();
 	}
 
 	@GetMapping("/card/{id}")
-	EntityModel<Card> one(@PathVariable Long id) {
+	EntityModel<CreditCard> one(@PathVariable Long id) {
 
-		Card card = repository.findById(id)
-				.orElseThrow(() -> new CardNotFoundException(id));
+		CreditCard card = repository.findById(id)
+				.orElseThrow(() -> new CreditCardNotFoundException(id));
 		return EntityModel.of(card,
-				linkTo(methodOn(CardController.class).one(id)).withSelfRel(),
-				linkTo(methodOn(CardController.class).all()).withRel("cards"));
+				linkTo(methodOn(CreditCardController.class).one(id)).withSelfRel(),
+				linkTo(methodOn(CreditCardController.class).all()).withRel("cards"));
 	}
 
 }

@@ -1,4 +1,4 @@
-package creditcard.domain;
+package com.creditcard.domain;
 
 import java.util.Objects;
 import javax.persistence.*;
@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "card")
 @Access(value=AccessType.FIELD)
-public class Card implements Serializable{
+public class CreditCard implements Serializable{
 
 	private static final long serialVersionUID = -7474838713815803531L;
 
@@ -30,9 +30,9 @@ public class Card implements Serializable{
 	String limit;
 
 
-	Card() {}
+	CreditCard() {}
 
-	public Card(String name, String cardNumber, String limit, String balance) {
+	public CreditCard(String name, String cardNumber, String limit, String balance) {
 
 		this.name = name;
 		this.cardNumber = cardNumber;
@@ -86,9 +86,9 @@ public class Card implements Serializable{
 
 		if (this == o)
 			return true;
-		if (!(o instanceof Card))
+		if (!(o instanceof CreditCard))
 			return false;
-		Card card = (Card) o;
+		CreditCard card = (CreditCard) o;
 		return Objects.equals(this.id, card.id) && Objects.equals(this.name, card.name)
 				&& Objects.equals(this.cardNumber, card.cardNumber) && Objects.equals(this.limit, card.limit)
 				&& Objects.equals(this.balance, card.balance);
