@@ -2,7 +2,7 @@
 This is a full stack web application to create a new credit card for a given name, card number, and limit.
 
 Technical Overview:
-Spring MVC has ben used to expose Rest Web Services (POST and GET in these case).  All the data are stored into H2, which is an in-memory Database. 
+Spring MVC has been used to expose Rest Web Services (POST and GET in these case).  All the data are stored into H2, which is an in-memory Database. 
 React was used to create a single-page dynamic UI.  Ajax JQuery to handle the REST requests from front-end to back-end.
 
 Back-end Technologies:
